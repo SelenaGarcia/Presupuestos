@@ -15,11 +15,13 @@ const Movimiento = ({guardarPresupuesto, guardarRestante}) => {
     //Submit para definir el presupuesto
     const agregarPresupuesto = e => {
         e.preventDefault();
+        
         //validación
         if (cantidad < 1 || isNaN (cantidad)) { 
             guardarError(true);
             return;
         }
+        
         //Si pasa la validación
         guardarError(false);
         guardarPresupuesto(cantidad);

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import Error from './Error'
 import shortid from 'shortid'
 
-const Formulario = () => {
+const Formulario = ({ guardarGasto, guardarcrearGasto }) => {
 
-    const [gasto, guardarGasto] = useState('')
+    const [nombre, guardarNombre] = useState('')
     const [cantidad, guardarCantidad] = useState(0)
     const [error, guardarError] = useState(false)
 
@@ -13,22 +13,28 @@ const Formulario = () => {
         e.preventDefault();
 
         // validar
-        if(cantidad<1 || isNaN(cantidad) || gasto.trim()==='')
-        {
+        if (cantidad < 1 || isNaN(cantidad) || nombre.trim() === '') {
             guardarError(true)
             return;
         }
+        guardarError(false);
 
         // construir gasto
-        const gasto ={
-            gasto,
+        const gasto = {
+            nombre,
             cantidad,
             id: shortid.generate()
         }
         // pasar el Gasto al container
 
+        guardarGasto(gasto);
+        guardarcrearGasto(true)
+
+
         // Resetear el Form
-        guardarError(false)
+
+        guardarNombre('');
+        guardarCantidad(0);
     }
 
     return (
@@ -37,16 +43,16 @@ const Formulario = () => {
         >
             <h2>Agrega tus Gastos Aquí</h2>
 
-            {error ? <Error mensaje="Ambos campos son necesarios y obligatorios o el presupuesto es incorrecto"/> : null }
+            {error ? <Error mensaje="Ambos campos son necesarios y obligatorios o el presupuesto es incorrecto" /> : null}
 
             <div className="campo">
-                <label>Observación del Gasto</label>
+                <label>Gasto</label>
                 <input
                     type="text"
                     className="u-full-width"
                     placeholder="Gasto"
-                    value={gasto}
-                    onChange={e => guardarGasto(e.target.value)}
+                    value={nombre}
+                    onChange={e => guardarNombre(e.target.value)}
                 />
             </div>
             <div className="campo">
@@ -63,7 +69,7 @@ const Formulario = () => {
             <input
                 type="submit"
                 className="button-primary u-full-width"
-                value="Agregar Gasto"
+                value='Agregar Gasto'
             />
         </form>
     )
