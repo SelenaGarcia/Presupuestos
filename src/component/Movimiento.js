@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import Error from './Error'
+import PropTypes from 'prop-types'
 
 
 const Movimiento = ({guardarPresupuesto, guardarRestante}) => {
@@ -50,5 +51,11 @@ const Movimiento = ({guardarPresupuesto, guardarRestante}) => {
         </Fragment>
     );
 };
+
+
+Movimiento.propTypes = {
+    guardarPresupuesto: PropTypes.func.isRequired,
+    guardarRestante: PropTypes.func.isRequired
+}
 
 export default Movimiento
