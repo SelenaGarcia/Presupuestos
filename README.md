@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Si quisieran ver el proyecto podrían entrar a la siguiente pagina 
+https://green-renard-costos.netlify.app/
+
 
 ## Available Scripts
 
